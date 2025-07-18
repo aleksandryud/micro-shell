@@ -1,6 +1,10 @@
 export default {
   webpack: {
     configure: async (config) => {
+      console.log(
+        "[DEBUG] Environment variables for Module Federation...",
+        process.env
+      );
       // Динамический импорт ModuleFederationPlugin
       const { ModuleFederationPlugin } = await import(
         "webpack/lib/container/ModuleFederationPlugin.js"
