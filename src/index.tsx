@@ -5,11 +5,12 @@ import { loadRemoteEntry } from "./utils/remoteLoader"; // Импортируе�
 
 (async () => {
   try {
-    console.log("Инициализация приложения Shell...");
+    console.log(
+      "Инициализация приложения Shell... REACT_APP_REMOTE_PRODUCTS_URL",
+      process.env.REACT_APP_REMOTE_PRODUCTS_URL
+    );
 
-    // Загружаем remote-entry для remote-приложений
-    // Динамически загружаем Products
-    await loadRemoteEntry("http://localhost:3005/remoteEntry.js");
+    await loadRemoteEntry(process.env.REACT_APP_REMOTE_PRODUCTS_URL!);
     console.log("Products remoteEntry.js загружен успешно.");
 
     // Явная инициализация shared scope

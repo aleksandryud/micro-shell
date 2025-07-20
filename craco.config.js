@@ -1,8 +1,31 @@
+// import fs from "fs";
+// import dotenv from "dotenv";
+// dotenv.config({ path: ".env" });
+
+// Write relevant env variables to a file for debugging
+// fs.writeFileSync(
+//   "env-debug.json",
+//   JSON.stringify(
+//     {
+//       REACT_APP_REMOTE_HOMEAPP_URL: process.env.REACT_APP_REMOTE_HOMEAPP_URL,
+//       REACT_APP_REMOTE_PRODUCTS_URL: process.env.REACT_APP_REMOTE_PRODUCTS_URL,
+//       NODE_ENV: process.env.NODE_ENV,
+//     },
+//     null,
+//     2
+//   )
+// );
+
+console.log(
+  "[DEBUG 11111] Environment variables for Module Federation...",
+  process.env
+);
+
 export default {
   webpack: {
     configure: async (config) => {
       console.log(
-        "[DEBUG] Environment variables for Module Federation...",
+        "[DEBUG 22222] Environment variables for Module Federation...",
         process.env
       );
       // Динамический импорт ModuleFederationPlugin
@@ -21,14 +44,8 @@ export default {
         new ModuleFederationPlugin({
           name: "shell", // Имя текущего приложения (Shell)
           remotes: {
-            homeApp: `homeApp@${
-              process.env.REMOTE_HOMEAPP_URL ||
-              "http://localhost:4173/remoteEntry.js"
-            }`,
-            products: `products@${
-              process.env.REMOTE_PRODUCTS_URL ||
-              "http://localhost:3005/remoteEntry.js"
-            }`,
+            homeApp: `homeApp@${process.env.REMOTE_HOMEAPP_URL}`,
+            products: `products@${process.env.REMOTE_PRODUCTS_URL}`,
           },
           shared: {
             vue: {
